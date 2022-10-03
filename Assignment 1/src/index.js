@@ -68,12 +68,13 @@ function sketch(event) {
    // to a round shape.
    ctx.lineCap = 'round';
 
-   getPosition(event) //confirm with professor if this is intended behaviour
+   //getPosition(event) //confirm with professor if this is intended behaviour
 
    // judge whether you aim to draw or earse
    if (tooltype == 'erase') {
       // (2pts)
       // Set stroke colour to transparent black, and fills area with transparent black
+      getPosition(event); // Need to add this to make erasing consistent since getPosition is after moveTo in this implementation
       ctx.strokeStyle = 'rgba(0,0,0,0)'
       ctx.clearRect(coord.x, coord.y, ctx.lineWidth, ctx.lineWidth);
    } else {
@@ -105,7 +106,7 @@ function sketch(event) {
    // mouse around. 
 
    // This command should be placed before moveTo to avoid connecting to previous line
-   // getPosition(event);
+   getPosition(event);
 
    // A line is traced from start
    // coordinate to this coordinate (ctx.lineTo function) (3pts)
