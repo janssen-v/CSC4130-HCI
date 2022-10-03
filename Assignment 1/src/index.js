@@ -43,6 +43,7 @@ function getPosition(event) {
 
 // The following function trigeer the flag to start draw (10pts)
 function startPainting(event) {
+   getPosition(event)
    paint = true;
 }
 
@@ -67,13 +68,12 @@ function sketch(event) {
    // Sets the end of the lines drawn
    // to a round shape.
    ctx.lineCap = 'round';
-
-   getPosition(event) //confirm with professor if this is intended behaviour
+   ctx.lineJoin = 'round'; // Added for smoother lines
 
    // judge whether you aim to draw or earse
    if (tooltype == 'erase') {
       // (2pts)
-      // Set stroke colour to transparent black, and fills area with transparent black
+      // Set stroke colour to transparent black, and fills area with transparent black with clearRect()
       ctx.strokeStyle = 'rgba(0,0,0,0)'
       ctx.clearRect(coord.x, coord.y, ctx.lineWidth, ctx.lineWidth);
    } else {
@@ -90,7 +90,7 @@ function sketch(event) {
       }
       */
 
-      // [New Implementation] Checks which radio element is checked, and gets its value 
+      // [New Implementation] Checks which radio element is checked, and gets its value -- More efficient and intuitive
       let radio_element = document.querySelector('input[name="color"]:checked');
       ctx.strokeStyle = radio_element.value;
    }
@@ -105,7 +105,7 @@ function sketch(event) {
    // mouse around. 
 
    // This command should be placed before moveTo to avoid connecting to previous line
-   // getPosition(event);
+   getPosition(event);
 
    // A line is traced from start
    // coordinate to this coordinate (ctx.lineTo function) (3pts)
