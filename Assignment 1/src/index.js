@@ -73,9 +73,10 @@ function sketch(event) {
    // judge whether you aim to draw or earse
    if (tooltype == 'erase') {
       // (2pts)
-      // Set stroke colour to transparent black, and fills area with transparent black with clearRect()
-      ctx.strokeStyle = 'rgba(0,0,0,0)'
-      ctx.clearRect(coord.x, coord.y, ctx.lineWidth, ctx.lineWidth);
+      // Set stroke colour to transparent black zero alpha, and fills area with transparent black with clearRect()
+      ctx.strokeStyle = 'rgba(0,0,0,1)'
+      //ctx.clearRect(coord.x, coord.y, ctx.lineWidth, ctx.lineWidth);
+      ctx.globalCompositeOperation = 'destination-out';
    } else {
       // (5pts)
       /* check every element in radio and change the style to the selected color */
