@@ -74,7 +74,7 @@ function sketch(event) {
    if (tooltype == 'erase') {
       // (2pts)
       // Set stroke colour to transparent black zero alpha, and fills area with transparent black with clearRect()
-      ctx.strokeStyle = 'rgba(0,0,0,1)'
+      ctx.strokeStyle = 'rgba(0,0,0,1)';
       //ctx.clearRect(coord.x, coord.y, ctx.lineWidth, ctx.lineWidth);
       ctx.globalCompositeOperation = 'destination-out';
    } else {
@@ -94,6 +94,7 @@ function sketch(event) {
       // [New Implementation] Checks which radio element is checked, and gets its value -- More efficient and intuitive
       let radio_element = document.querySelector('input[name="color"]:checked');
       ctx.strokeStyle = radio_element.value;
+      ctx.globalCompositeOperation = 'source-over';
    }
 
    // The cursor to start drawing
