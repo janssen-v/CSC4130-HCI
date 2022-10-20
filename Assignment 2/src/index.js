@@ -185,7 +185,16 @@ function use_tool(tool) {
       object.hasControls = true;
     });
     canvas.requestRenderAll();
-
+  }
+  // Unselect all selected during move, as a precaution for edge cases
+  if (tooltype == "draw") {
+    canvas.selection = false;
+    canvas.forEachObject(function (object) {
+      object.selectable = false;
+      object.hasBorders = false;
+      object.hasControls = false;
+    });
+    canvas.requestRenderAll();
   }
 }
 
