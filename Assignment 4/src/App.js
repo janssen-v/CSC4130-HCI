@@ -1,14 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 import BarChart from './components/BarChart';
 import * as d3 from 'd3';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ScatterPlot from './components/ScatterPlot';
 
 
 function App() {
 
     // Create three states, i.e., data, selectedData, and filterCategory
+    const [data, setData] = useState(0);
+    const [selectedData, setSelectedData] = useState(0);
+    const [filterCategory, setFilterCategory] = useState(0);
+
 
     // To DO
 
@@ -33,7 +36,17 @@ function App() {
 
     // Use useEffect to render and update visual results when dependency/dependencies change (30pts)
 
-    // To DO
+    useEffect(() => {
+        if (data) {
+            setSelectedData(data);
+        }
+
+        if (filterCategory) {
+            setSelectedData(data.filter(d => d.difficulty === filterCategory));
+        }
+
+    }, [data, filterCategory])
+
 
     return (
         <div className='Container'>
