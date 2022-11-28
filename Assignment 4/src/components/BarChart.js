@@ -1,5 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
+import { filter, select } from 'd3';
 
 const BarChart = ({
     config:{
@@ -38,17 +39,31 @@ const BarChart = ({
     const _margin = React.useRef();
 
     const orderedKeys = ['Easy', 'Intermediate', 'Difficult'];
+    var selectedKeys =  [];
 
 
 
     // Intialize the bar plot (5pts)
 
     // To DO
+    React.useEffect(() => {
+        if (initialized === false) {
+            initVis();
+            console.log("initialized bar");
+        }
+    },[])
 
 
     // Update rendering result (5pts)
 
     // To DO
+    React.useEffect(() => {
+        if (initialized === true){
+            updateVis();
+            console.log("updated bar");
+        }
+    },[data])
+
 
 
     const initVis = () => {
@@ -101,18 +116,35 @@ const BarChart = ({
         .attr('fill', d => _colorScale.current(colorValue(d)))
         .on('click', function(event, d) {
             // Check if current category is active and toggle class (5pts)
-
-            // To DO
             
+            if (d3.select(this).classed('active')) {
+                d3.select(this).classed('active', false);
+                console.log("remove from selection");
+                selectedKeys.indexOf(d.key) !== -1 && selectedKeys.splice(selectedKeys.indexOf(d.key), 1)
+
+                
+            } else {
+                d3.select(this).classed('active', true);
+                console.log("add to selection");
+                selectedKeys.unshift(d.key);
+            }
 
             // Get the names of all active/filtered categories (10pts)
 
-            // To DO
-           
+            console.log('Current Selected Keys', selectedKeys);
+
             
             // Change parent node's React State with the selected category names (5pts)
 
-            // To DO
+            if (selectedKeys.length > 0) {
+                console.log('Setting filter category');
+                setFilterCategory(orderedKeys.filter(key => selectedKeys.includes(key))); // The key to success
+            } else {
+                console.log('Clearing filter category');
+                setFilterCategory(null);
+            }
+            
+
             
         });
 

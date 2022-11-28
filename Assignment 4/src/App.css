@@ -27,3 +27,14 @@
 }
 
 /* stylize hover and click actions */
+
+rect.bar:hover {
+  stroke:grey;
+  stroke-width: 2.5px;
+
+}
+
+rect.bar.active {
+  stroke: black;
+  stroke-width: 2.5px;
+}

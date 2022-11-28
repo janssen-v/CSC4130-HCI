@@ -46,11 +46,25 @@ const ScatterPlot = ({
     // Intialize the scatter plot (5pts)
 
     // To DO
+    React.useEffect(() => {
+        if (initialized === false) {
+            initVis();
+            console.log("initialized scatter");
+        }
+    },[])
 
 
     // Update rendering result (5pts)
 
     // To DO
+    React.useEffect(() => {
+        
+        if (initialized === true){
+            updateVis();
+            console.log("updated scatter");
+        }
+    },[data])
+
 
 
     const initVis = () => {
@@ -85,14 +99,12 @@ const ScatterPlot = ({
         _colorScale.current = d3.scaleOrdinal()
             .range(['#a0a1e2', '#6495ed', '#04ea17']) 
             .domain(['Easy','Intermediate','Difficult']);
-
+            
         setInitialized(true);
     }
 
     const updateVis = () => {
 
-        
-        
         let colorValue = d => d.difficulty;
         let xValue = d => d.time;
         let yValue = d => d.distance;

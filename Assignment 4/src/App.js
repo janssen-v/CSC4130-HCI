@@ -8,9 +8,10 @@ import ScatterPlot from './components/ScatterPlot';
 function App() {
 
     // Create three states, i.e., data, selectedData, and filterCategory
-    const [data, setData] = useState(0);
-    const [selectedData, setSelectedData] = useState(0);
-    const [filterCategory, setFilterCategory] = useState(0);
+    const [data, setData] = useState();
+    const [selectedData, setSelectedData] = useState();
+    const [filterCategory, setFilterCategory] = useState();
+
 
 
     // To DO
@@ -42,10 +43,13 @@ function App() {
         }
 
         if (filterCategory) {
-            setSelectedData(data.filter(d => d.difficulty === filterCategory));
+            console.log('FilterCategory: ', filterCategory);
+            setSelectedData(data.filter(d => d.difficulty === filterCategory[0] || d.difficulty === filterCategory[1] || d.difficulty === filterCategory[2]));
         }
 
     }, [data, filterCategory])
+
+   
 
 
     return (
